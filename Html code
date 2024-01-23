@@ -1,0 +1,43 @@
+// html code named "index.html"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Secure Digital Voting System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Secure Digital Voting System</h1>
+        <button onclick="castVote()">Cast Vote</button>
+        <div id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+//css code "style.css"
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+}
+
+.container {
+    text-align: center;
+}
+
+button {
+    margin: 10px;
+}
+
+//js code as "script.js"
+function castVote() {
+    const response = await fetch('/cast-vote', { method: 'POST' });
+    const result = await response.json();
+    document.getElementById('result').innerHTML = '<p>{result.message}</p>';
+}
